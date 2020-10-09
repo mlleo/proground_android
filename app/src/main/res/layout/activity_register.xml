@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D3D3D3"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/radius_register">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="계정을"
+                android:textStyle="bold"
+                android:textSize="40dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="생성하세요"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:layout_marginBottom="30dp"/>
+
+            <EditText
+                android:id="@+id/rgt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/rgt_email"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/rgt_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/rgt_password"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+            <EditText
+                android:id="@+id/rgt_passcheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/rgt_passcheck"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+            <EditText
+                android:id="@+id/rgt_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/rgt_nickname"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+            <EditText
+                android:id="@+id/rgt_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/rgt_birth"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/rgt_height"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginRight="30dp"
+                android:hint="@string/rgt_height"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+            <EditText
+                android:id="@+id/rgt_weight"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+
+                android:layout_marginRight="30dp"
+                android:hint="@string/rgt_weight"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/rgt_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/rgt_sex"
+                android:inputType="text"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/rgt_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radius_btn_darkblue"
+                android:text="@string/btn_register"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:layout_marginLeft="100dp"
+                android:text="이미 계정이 있으신가요?"
+                android:textStyle="bold"
+                android:textColor="@color/black">
+            </TextView>
+            <TextView
+                android:id="@+id/rgt_to_lgn_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="로그인"
+                android:textStyle="bold"
+                android:textColor="@color/black">
+            </TextView>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

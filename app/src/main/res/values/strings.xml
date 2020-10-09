@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">proground</string>
+    <string name="hint_email">이메일을 입력하세요</string>
+    <string name="hint_password">비밀번호를 입력하세요</string>
+    <string name="hint_name">성명을 입력하세요</string>
+    <string name="hint_mobileNO">휴대폰번호를 입력하세요</string>
+    <string name="btn_login">로그인</string>
+    <string name="btn_register">회원가임</string>
+    <string name="btn_logout">로그아웃</string>
+    <string name="btn_rgt">가입하기</string>
+    <string name="rgt_email">이메일</string>
+    <string name="rgt_password">비밀번호</string>
+    <string name="rgt_nickname">닉네임</string>
+    <string name="rgt_sex">성별(남/여)</string>
+    <string name="rgt_height">키(cm)</string>
+    <string name="rgt_weight">몸무게(kg)</string>
+    <string name="rgt_birth">생년월일(19000101)</string>
+    <string name="rgt_passcheck">비밀번호확인</string>
+</resources>

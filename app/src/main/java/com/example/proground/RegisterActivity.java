@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String TAG="RegisterActivity";
+    private static  final String TAG="RegisterActivity";
     private FirebaseAuth mAuth;
     EditText memail, mpassword, mpasswordcheck, mnickname, mbirth, msex, mheight, mweight;
     Button rgtBtn;
@@ -67,7 +67,9 @@ public class RegisterActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.rgt_btn:
                     signUp();
-                    startLoginActivity();
+                    if(signUp()>0){
+                        startLoginActivity();
+                    }
                     break;
                 case R.id.rgt_to_lgn_btn:
                     startLoginActivity();
@@ -76,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     };
 
-    private void signUp(){
+    private int signUp(){
 
         String email = ((EditText)memail).getText().toString();
         String password = ((EditText)mpassword).getText().toString();
@@ -136,15 +138,18 @@ public class RegisterActivity extends AppCompatActivity {
                                 // ...
                             }
                         });
+                return 1;
+
             }else{
                 startToast("비밀번호가 일치하지 않습니다.");
             }
+
         }else{
             startToast("정보를 입력해주세요.");
         }
 
 
-
+        return 0;
     }
 
     private void startToast(String msg){

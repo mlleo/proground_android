@@ -1,10 +1,12 @@
 package com.example.proground;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText memail, mpassword, mpasswordcheck, mnickname, mbirth, msex, mheight, mweight;
     Button rgtBtn;
+    TextView rgt_to_log_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //start point
@@ -42,8 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
         mheight = findViewById(R.id.rgt_height);
         mweight = findViewById(R.id.rgt_weight);
         rgtBtn = findViewById(R.id.rgt_btn);
+        rgt_to_log_btn = (TextView)findViewById(R.id.rgt_to_lgn_btn); //textview
 
         rgtBtn.setOnClickListener(onClickListener);
+        rgt_to_log_btn.setOnClickListener(onClickListener);
+
 
     }
 
@@ -61,7 +67,10 @@ public class RegisterActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.rgt_btn:
                     signUp();
+                    startLoginActivity();
                     break;
+                case R.id.rgt_to_lgn_btn:
+                    startLoginActivity();
 
             }
         }
@@ -140,5 +149,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void startLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

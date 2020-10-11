@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.rgt_btn:
                     signUp();
                     if(signUp()>0){
-                        startLoginActivity();
+                        startLoginActivity(); // after register successfully finished
                     }
                     break;
                 case R.id.rgt_to_lgn_btn:

@@ -19,7 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -36,14 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        uemail = findViewById(R.id.rgt_email);
-        upassword = findViewById(R.id.rgt_pass);
-        upasswordcheck = findViewById(R.id.rgt_passcheck);
-        unickname = findViewById(R.id.rgt_nickname);
-        ubirth = findViewById(R.id.rgt_nickname);
-        usex = findViewById(R.id.rgt_sex);
-        uheight = findViewById(R.id.rgt_height);
-        uweight = findViewById(R.id.rgt_weight);
+
+
         rgtBtn = findViewById(R.id.rgt_btn);
         rgt_to_log_btn = (TextView)findViewById(R.id.rgt_to_lgn_btn); //textview
 
@@ -70,20 +66,20 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void signUp(){
 
-        String email = ((EditText)uemail).getText().toString();
-        String password = ((EditText)upassword).getText().toString();
-        String passwordCheck = ((EditText)upasswordcheck).getText().toString();
-        String nickname = ((EditText)unickname).getText().toString();
-        String birth = ((EditText)ubirth).getText().toString();
-        String sex = ((EditText)usex).getText().toString();
-        String height = ((EditText)uheight).getText().toString();
-        String weight = ((EditText)uweight).getText().toString();
+        String uemail = ((EditText)findViewById(R.id.rgt_email)).getText().toString();
+        String upassword = ((EditText)findViewById(R.id.rgt_pass)).getText().toString();
+        String upasswordCheck = ((EditText)findViewById(R.id.rgt_passcheck)).getText().toString();
+        final String unickname = ((EditText)findViewById(R.id.rgt_nickname)).getText().toString();
+        final String ubirth = ((EditText)findViewById(R.id.rgt_birth)).getText().toString();
+        final String usex = ((EditText)findViewById(R.id.rgt_sex)).getText().toString();
+        final String uheight = ((EditText)findViewById(R.id.rgt_height)).getText().toString();
+        final String uweight = ((EditText)findViewById(R.id.rgt_weight)).getText().toString();
 
 
-        if(email.length() > 0 && password.length() > 0 && passwordCheck.length() > 0 && nickname.length() > 0 && birth.length() > 0
-                && sex.length() > 0 && height.length() > 0 && weight.length() > 0){              //it user forget at least 1 info for registration
-            if(password.equals(passwordCheck)){
-                mAuth.createUserWithEmailAndPassword(email, password)
+        if(uemail.length() > 0 && upassword.length() > 0 && upasswordCheck.length() > 0 && unickname.length() > 0 && ubirth.length() > 0
+                && usex.length() > 0 && uheight.length() > 0 && uweight.length() > 0){              //it user forget at least 1 info for registration
+            if(upassword.equals(upasswordCheck)){
+                mAuth.createUserWithEmailAndPassword(uemail, upassword)
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -91,31 +87,16 @@ public class RegisterActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     startToast("회원가입에 성공하였습니다.");
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance(); //Initialize cloud firestore instance
+
+                                    MemberInfo memberInfo = new MemberInfo(unickname, ubirth, usex, uheight, uweight);
+                                    db.collection("users").document(user.getUid()).set(memberInfo);
+
                                     String email = user.getEmail();
                                     String uid = user.getUid();
-                                    String nickname = (unickname).getText().toString().trim();
-                                    String birth = (ubirth).getText().toString().trim();
-                                    String sex = (usex).getText().toString().trim();
-                                    String height = (uheight).getText().toString().trim();
-                                    String weight = (uweight).getText().toString().trim();
-
-
-                                    //Save hashmap table to firebase database
-                                    HashMap<Object,String> hashMap = new HashMap<>();
-
-                                    hashMap.put("uid",uid);
-                                    hashMap.put("email",email);
-                                    hashMap.put("name",nickname);
-                                    hashMap.put("birth",birth);
-                                    hashMap.put("sex",sex);
-                                    hashMap.put("height",height);
-                                    hashMap.put("weight",weight);
-
-
-                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                    DatabaseReference reference = database.getReference("Users");
-                                    reference.child(uid).setValue(hashMap);
                                     startActivity(RunMainActivity.class);
+//
+
                                     // success
                                 } else {
                                     if(task.getException() != null){

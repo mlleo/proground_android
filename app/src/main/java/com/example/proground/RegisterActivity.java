@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
     private static  final String TAG="RegisterActivity";
     private FirebaseAuth mAuth;
-    EditText memail, mpassword, mpasswordcheck, mnickname, mbirth, msex, mheight, mweight;
+    EditText uemail, upassword, upasswordcheck, unickname, ubirth, usex, uheight, uweight;
     Button rgtBtn;
     TextView rgt_to_log_btn;
 
@@ -36,14 +36,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        memail = findViewById(R.id.rgt_email);
-        mpassword = findViewById(R.id.rgt_pass);
-        mpasswordcheck = findViewById(R.id.rgt_passcheck);
-        mnickname = findViewById(R.id.rgt_nickname);
-        mbirth = findViewById(R.id.rgt_nickname);
-        msex = findViewById(R.id.rgt_sex);
-        mheight = findViewById(R.id.rgt_height);
-        mweight = findViewById(R.id.rgt_weight);
+        uemail = findViewById(R.id.rgt_email);
+        upassword = findViewById(R.id.rgt_pass);
+        upasswordcheck = findViewById(R.id.rgt_passcheck);
+        unickname = findViewById(R.id.rgt_nickname);
+        ubirth = findViewById(R.id.rgt_nickname);
+        usex = findViewById(R.id.rgt_sex);
+        uheight = findViewById(R.id.rgt_height);
+        uweight = findViewById(R.id.rgt_weight);
         rgtBtn = findViewById(R.id.rgt_btn);
         rgt_to_log_btn = (TextView)findViewById(R.id.rgt_to_lgn_btn); //textview
 
@@ -53,13 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        updateUI(currentUser);
-    }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -67,27 +60,24 @@ public class RegisterActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.rgt_btn:
                     signUp();
-                    if(signUp()>0){
-                        startLoginActivity(); // after register successfully finished
-                    }
                     break;
                 case R.id.rgt_to_lgn_btn:
-                    startLoginActivity();
+                    startActivity(LoginActivity.class);
 
             }
         }
     };
 
-    private int signUp(){
+    private void signUp(){
 
-        String email = ((EditText)memail).getText().toString();
-        String password = ((EditText)mpassword).getText().toString();
-        String passwordCheck = ((EditText)mpasswordcheck).getText().toString();
-        String nickname = ((EditText)mnickname).getText().toString();
-        String birth = ((EditText)mbirth).getText().toString();
-        String sex = ((EditText)msex).getText().toString();
-        String height = ((EditText)mheight).getText().toString();
-        String weight = ((EditText)mweight).getText().toString();
+        String email = ((EditText)uemail).getText().toString();
+        String password = ((EditText)upassword).getText().toString();
+        String passwordCheck = ((EditText)upasswordcheck).getText().toString();
+        String nickname = ((EditText)unickname).getText().toString();
+        String birth = ((EditText)ubirth).getText().toString();
+        String sex = ((EditText)usex).getText().toString();
+        String height = ((EditText)uheight).getText().toString();
+        String weight = ((EditText)uweight).getText().toString();
 
 
         if(email.length() > 0 && password.length() > 0 && passwordCheck.length() > 0 && nickname.length() > 0 && birth.length() > 0
@@ -103,11 +93,11 @@ public class RegisterActivity extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String email = user.getEmail();
                                     String uid = user.getUid();
-                                    String nickname = (mnickname).getText().toString().trim();
-                                    String birth = (mbirth).getText().toString().trim();
-                                    String sex = (msex).getText().toString().trim();
-                                    String height = (mheight).getText().toString().trim();
-                                    String weight = (mweight).getText().toString().trim();
+                                    String nickname = (unickname).getText().toString().trim();
+                                    String birth = (ubirth).getText().toString().trim();
+                                    String sex = (usex).getText().toString().trim();
+                                    String height = (uheight).getText().toString().trim();
+                                    String weight = (uweight).getText().toString().trim();
 
 
                                     //Save hashmap table to firebase database
@@ -125,6 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                                     DatabaseReference reference = database.getReference("Users");
                                     reference.child(uid).setValue(hashMap);
+                                    startActivity(RunMainActivity.class);
                                     // success
                                 } else {
                                     if(task.getException() != null){
@@ -138,7 +129,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 // ...
                             }
                         });
-                return 1;
 
             }else{
                 startToast("비밀번호가 일치하지 않습니다.");
@@ -148,16 +138,15 @@ public class RegisterActivity extends AppCompatActivity {
             startToast("정보를 입력해주세요.");
         }
 
-
-        return 0;
     }
 
     private void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void startLoginActivity(){
-        Intent intent = new Intent(this, LoginActivity.class);
+    private void startActivity(Class c){
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

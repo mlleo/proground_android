@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
     Button main_rgt_btn;
@@ -18,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) { //start point
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){ // user already login
+            startRunMainActivity();
+        }
 
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
@@ -53,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void main2RegisterActivity(){
         Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    private void startRunMainActivity(){
+        Intent intent = new Intent(this, RunMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 //    @Override

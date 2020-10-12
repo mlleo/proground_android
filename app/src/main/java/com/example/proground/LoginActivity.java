@@ -2,6 +2,7 @@ package com.example.proground;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,8 +27,8 @@ import java.util.HashMap;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG="RegisterActivity";
     private FirebaseAuth mAuth;
-    EditText memail, mpassword, mnickname, mbirth, msex, mheight, mweight;
-    Button logBtn;
+    EditText uemail, upassword;
+    Button logBtn, pass_reset;
     TextView log_to_rgt_btn;
 
     @Override
@@ -37,28 +38,17 @@ public class LoginActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        memail = findViewById(R.id.rgt_email);
-        mpassword = findViewById(R.id.rgt_pass);
-        mnickname = findViewById(R.id.rgt_nickname);
-        mbirth = findViewById(R.id.rgt_nickname);
-        msex = findViewById(R.id.rgt_sex);
-        mheight = findViewById(R.id.rgt_height);
-        mweight = findViewById(R.id.rgt_weight);
-        logBtn = findViewById(R.id.login_btn);
+        uemail = findViewById(R.id.login_email);
+        upassword = findViewById(R.id.login_pass);
 
+        logBtn = findViewById(R.id.login_btn);
+        pass_reset = findViewById(R.id.login_password_reset);
         log_to_rgt_btn = (TextView)findViewById(R.id.lgn_to_rgt_btn); //textview
 
         logBtn.setOnClickListener(onClickListener);
+        pass_reset.setOnClickListener(onClickListener);
         log_to_rgt_btn.setOnClickListener(onClickListener);
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        updateUI(currentUser);
     }
 
 
@@ -66,78 +56,53 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.rgt_btn:
-                    signUp();
+                case R.id.login_btn:
+                    login();
                     break;
                 case R.id.lgn_to_rgt_btn:
-                    startRegisterActivity();
+                    startActivity(RegisterActivity.class);
                     break;
+                case R.id.login_password_reset:
+                    startActivity(PasswordResetActivity.class);
+                    break;
+
             }
         }
     };
 
-    private void signUp(){
+    private void login(){
 
-        String email = ((EditText)memail).getText().toString();
-        String password = ((EditText)mpassword).getText().toString();
-        String nickname = ((EditText)mnickname).getText().toString();
-        String birth = ((EditText)mbirth).getText().toString();
-        String sex = ((EditText)msex).getText().toString();
-        String height = ((EditText)mheight).getText().toString();
-        String weight = ((EditText)mweight).getText().toString();
+        String email = ((EditText)uemail).getText().toString();
+        String password = ((EditText)upassword).getText().toString();
 
 
         if(email.length() > 0 && password.length() > 0){              //it user forget email or password for login
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                startToast("회원가입에 성공하였습니다.");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                String email = user.getEmail();
-                                String uid = user.getUid();
-                                String nickname = (mnickname).getText().toString().trim();
-                                String birth = (mbirth).getText().toString().trim();
-                                String sex = (msex).getText().toString().trim();
-                                String height = (mheight).getText().toString().trim();
-                                String weight = (mweight).getText().toString().trim();
+                                startToast("로그인에 성공하였습니다.");
+                                startActivity(RunMainActivity.class);
 
-
-                                //Save hashmap table to firebase database
-                                HashMap<Object,String> hashMap = new HashMap<>();
-
-                                hashMap.put("uid",uid);
-                                hashMap.put("email",email);
-                                hashMap.put("name",nickname);
-                                hashMap.put("birth",birth);
-                                hashMap.put("sex",sex);
-                                hashMap.put("height",height);
-                                hashMap.put("weight",weight);
-
-
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference reference = database.getReference("Users");
-                                reference.child(uid).setValue(hashMap);
-                                // success
                             } else {
+                                // If sign in fails, display a message to the user.
                                 if(task.getException() != null){
                                     // If sign in fails, display a message to the user.
                                     startToast(task.getException().toString());
                                     // fail
                                 }
-
                             }
 
                             // ...
                         }
                     });
+
         }else{
             startToast("정보를 입력해주세요.");
         }
-
-
 
     }
 
@@ -145,8 +110,9 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void startRegisterActivity(){
-        Intent intent = new Intent(this, RegisterActivity.class);
+    private void startActivity(Class c){
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

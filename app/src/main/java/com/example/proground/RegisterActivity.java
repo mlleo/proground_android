@@ -96,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     String uid = user.getUid();
                                     startActivity(RunMainActivity.class);
 //
-
                                     // success
                                 } else {
                                     if(task.getException() != null){
@@ -107,7 +106,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 }
 
-                                // ...
                             }
                         });
 

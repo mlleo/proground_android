@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "2762970062",
+    "firebase_url": "https://proground-956c9.firebaseio.com",
+    "project_id": "proground-956c9",
+    "storage_bucket": "proground-956c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2762970062:android:41dddbda90a502161b519f",
+        "android_client_info": {
+          "package_name": "com.example.proground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2762970062-2pqnbelc835oo53eqittuhaoqgcujfj9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proground",
+            "certificate_hash": "7141d7d0fd9afa8c3b6f1f1a32d0c35b5b1159d0"
+          }
+        },
+        {
+          "client_id": "2762970062-i8dshj2aev55p485i4sfgl74ldu9t74u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQJ3gTsLBQtUpF1DunV5lBRTFvg8BHxz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2762970062-i8dshj2aev55p485i4sfgl74ldu9t74u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

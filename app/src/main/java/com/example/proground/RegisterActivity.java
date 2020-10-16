@@ -59,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                     break;
                 case R.id.rgt_to_lgn_btn:
                     startActivity(LoginActivity.class);
+                    break;
 
             }
         }

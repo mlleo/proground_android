@@ -37,6 +37,7 @@
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".RunMainActivity"></activity>
         <activity android:name=".PasswordResetActivity"></activity>
+        <activity android:name=".RunningActivity"></activity>
     </application>
 
 </manifest>

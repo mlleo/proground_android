@@ -4,11 +4,13 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -25,9 +27,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RunMainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    Button logout_btn;
+//    Button logout_btn;
+    Button run_start_btn;
     private GoogleMap googleMap;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) { //start point
         super.onCreate(savedInstanceState);
@@ -37,9 +41,13 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
         mapFragment.getMapAsync(this); //get map instance from mapfragment
 
 
+
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        run_start_btn = findViewById(R.id.run_main_btn);
+        run_start_btn.setOnClickListener(onClickListener);
 
 //        logout_btn = findViewById(R.id.logout_btn);
 //        logout_btn.setOnClickListener(onClickListener);
@@ -101,14 +109,27 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
+
+
+//    View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            switch (v.getId()) {
+//                case R.id.logout_btn:
+//                    logout();
+//                    break;
+//
+//            }
+//        }
+//    };
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.logout_btn:
-                    logout();
+            switch (v.getId()){
+                case R.id.run_main_btn:
+                    startActivity(RunningActivity.class);
                     break;
-
             }
         }
     };

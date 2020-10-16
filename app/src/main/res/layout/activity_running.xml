@@ -90,17 +90,26 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-    <ToggleButton
-        android:id="@+id/run_start_btn"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:background="@drawable/run_toggle_selector_pause"
-        android:textOn=""
-        android:textOff=""
-        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginBottom="100dp">
 
-    </ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/run_start_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/run_toggle_selector_pause"
+            android:textOn=""
+            android:textOff="">
+
+        </ToggleButton>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

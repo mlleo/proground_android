@@ -46,15 +46,11 @@
 
     <Button
         android:id="@+id/run_main_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/circle_btn"
-        android:text ="G O"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:textColor="@color/black">
+        android:background="@drawable/run_toggle_selector_go">
 
     </Button>
 

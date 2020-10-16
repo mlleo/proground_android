@@ -26,22 +26,48 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RunningActivity extends AppCompatActivity {
 
 
+    ToggleButton toggleButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) { //start point
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_running);
 
+        toggleButton = findViewById(R.id.run_start_btn);
+
+        toggleButton.setOnClickListener(onClickListener);
+
     }
 
-    public void onToggleClicked(View v){
-        boolean on = ((ToggleButton) v).isChecked();
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.run_start_btn:
+                    if (toggleButton.isChecked()) {
+                        toggleButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.run_toggle_selector_go)
+                        );
+                    } else {
+                        toggleButton.setBackgroundDrawable(
+                                getResources().
+                                        getDrawable(R.drawable.run_toggle_selector_pause)
+                        );
+                        break;
 
-        if(on){
-            Toast.makeText(getApplicationContext(),"Running stop", Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(getApplicationContext(),"Resume", Toast.LENGTH_LONG).show();
+                    }
+            }
         }
-    }
+    };
+
+
+//    public void onToggleClicked(View v){
+//        boolean on = ((ToggleButton) v).isChecked();
+//
+//        if(on){
+//            Toast.makeText(getApplicationContext(),"Running stop", Toast.LENGTH_LONG).show();
+//        }else {
+//            Toast.makeText(getApplicationContext(),"Resume", Toast.LENGTH_LONG).show();
+//        }
+//    }
 
 
     private void startToast(String msg){

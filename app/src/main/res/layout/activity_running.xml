@@ -92,16 +92,12 @@
 
     <ToggleButton
         android:id="@+id/run_start_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-        android:background="@drawable/run_toggle_selector"
-        android:textOn="G O"
-        android:textOff="| |"
-        android:textStyle="bold"
-        android:textSize="50dp"
-        android:textColor="@color/black"
-        android:onClick="onToggleClicked"
+        android:background="@drawable/run_toggle_selector_pause"
+        android:textOn=""
+        android:textOff=""
         >
 
     </ToggleButton>

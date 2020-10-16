@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RunningActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) { //start point
         super.onCreate(savedInstanceState);
@@ -31,14 +33,15 @@ public class RunningActivity extends AppCompatActivity {
 
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.run_main_btn:
-            }
+    public void onToggleClicked(View v){
+        boolean on = ((ToggleButton) v).isChecked();
+
+        if(on){
+            Toast.makeText(getApplicationContext(),"Running stop", Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(getApplicationContext(),"Resume", Toast.LENGTH_LONG).show();
         }
-    };
+    }
 
 
     private void startToast(String msg){

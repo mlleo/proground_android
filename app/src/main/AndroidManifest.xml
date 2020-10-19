@@ -33,11 +33,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".RunMainActivity"></activity>
-        <activity android:name=".PasswordResetActivity"></activity>
-        <activity android:name=".RunningActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RunMainActivity" />
+        <activity android:name=".PasswordResetActivity" />
+        <activity android:name=".RunningActivity" />
+
+
     </application>
+
+
 
 </manifest>

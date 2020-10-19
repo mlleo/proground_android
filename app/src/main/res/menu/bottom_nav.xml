@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_class"
+        android:enabled="true"
+        android:icon="@drawable/nav_class_gray"
+        android:title="Class"/>
+
+    <item
+        android:id="@+id/nav_run"
+        android:enabled="true"
+        android:icon="@drawable/nav_run_gray"
+        android:title="Run"/>
+
+    <item
+        android:id="@+id/nav_rank"
+        android:enabled="true"
+        android:icon="@drawable/nav_rank_gray"
+        android:title="Ranking"/>
+
+</menu>

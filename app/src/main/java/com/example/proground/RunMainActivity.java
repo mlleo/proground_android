@@ -53,8 +53,6 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
         mapFragment.getMapAsync(this); //get map instance from mapfragment
 
 
-
-        //    Button logout_btn;
         Button run_start_btn = findViewById(R.id.run_main_btn);
         run_start_btn.setOnClickListener(onClickListener);
 
@@ -85,10 +83,7 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
         nav_run = new RunMainFragmentActivity();
         nav_rank = new LeaderboardActivity();
         setFrag(0); // 첫 프래그먼트 화면 지정
-//
 
-//        logout_btn = findViewById(R.id.logout_btn);
-//        logout_btn.setOnClickListener(onClickListener);
     }
 
     private void setFrag(int n)
@@ -98,17 +93,21 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
         switch (n)
         {
             case 0:
+                getParent();
                 ft.replace(R.id.nav_main_frame,nav_run);
+                ft.addToBackStack(null);
                 ft.commit();
                 break;
 
             case 1:
                 ft.replace(R.id.nav_main_frame,nav_class);
+                ft.addToBackStack(null);
                 ft.commit();
                 break;
 
             case 2:
                 ft.replace(R.id.nav_main_frame,nav_rank);
+                ft.addToBackStack(null);
                 ft.commit();
                 break;
 
@@ -122,7 +121,7 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
 
-        LatLng proground = new LatLng(37.479296, 126.952667);   //add default marker
+        LatLng proground = new LatLng(67.479296, 126.952667);   //add default marker
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(proground)); // move camera view location to "proground"
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(15));   // zoom in camera
         MarkerOptions markerOptions = new MarkerOptions().position(proground).title("PROGROUND");
@@ -169,19 +168,6 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
     }
 
-
-
-//    View.OnClickListener onClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            switch (v.getId()) {
-//                case R.id.logout_btn:
-//                    logout();
-//                    break;
-//
-//            }
-//        }
-//    };
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override

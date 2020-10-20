@@ -54,10 +54,6 @@ public class RunMainActivity extends AppCompatActivity implements OnMapReadyCall
 
 
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //    Button logout_btn;
         Button run_start_btn = findViewById(R.id.run_main_btn);
         run_start_btn.setOnClickListener(onClickListener);

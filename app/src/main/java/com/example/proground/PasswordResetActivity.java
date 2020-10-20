@@ -3,6 +3,9 @@ package com.example.proground;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +27,7 @@ public class PasswordResetActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText uemail;
     Button password_reset_btn;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { //start point
@@ -38,6 +43,11 @@ public class PasswordResetActivity extends AppCompatActivity {
 
         password_reset_btn.setOnClickListener(onClickListener);
 
+        toolbar = (Toolbar) findViewById(R.id.login_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(""); //No title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back icon btn
+
 
     }
 
@@ -52,6 +62,29 @@ public class PasswordResetActivity extends AppCompatActivity {
             }
         }
     };
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.login_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.toolbar_logout:
+                logout();
+                return true;
+            case android.R.id.home:
+                Toast.makeText(getApplicationContext(), "뒤로가기", Toast.LENGTH_LONG).show();
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void send(){
 
@@ -77,8 +110,21 @@ public class PasswordResetActivity extends AppCompatActivity {
 
     }
 
+    private void logout(){
+        FirebaseAuth.getInstance().signOut();
+        startToast("로그아웃에 성공하였습니다.");
+        startActivity(MainActivity.class);
+
+    }
+
     private void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
+
+    private void startActivity(Class c){
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }

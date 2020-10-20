@@ -59,17 +59,6 @@ public class RunningActivity extends AppCompatActivity {
     };
 
 
-//    public void onToggleClicked(View v){
-//        boolean on = ((ToggleButton) v).isChecked();
-//
-//        if(on){
-//            Toast.makeText(getApplicationContext(),"Running stop", Toast.LENGTH_LONG).show();
-//        }else {
-//            Toast.makeText(getApplicationContext(),"Resume", Toast.LENGTH_LONG).show();
-//        }
-//    }
-
-
     private void startToast(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }

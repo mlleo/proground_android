@@ -117,16 +117,6 @@ public class RunMainActivity extends AppCompatActivity {
     }
 
 
-//
-//    View.OnClickListener onClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            if (v.getId() == R.id.run_main_btn) {
-//                startActivity(RunningActivity.class);
-//            }
-//        }
-//    };
-
     private void logout(){
         FirebaseAuth.getInstance().signOut();
         startToast("로그아웃에 성공하였습니다.");

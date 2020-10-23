@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/nav_class"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="class main page"
-        android:textSize="40dp">
+        android:layout_height="wrap_content">
 
-    </TextView>
+        <LinearLayout
+            android:id="@+id/round_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="20dp"
+            android:background="@drawable/radius_runmain">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="JOIN CLASS"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="함께 달려요!"
+                android:textStyle="bold"
+                android:textSize="30sp"/>
 
-</LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</ScrollView>

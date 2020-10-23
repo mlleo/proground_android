@@ -65,7 +65,7 @@ public class RunMainFragmentActivity extends Fragment implements OnMapReadyCallb
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.run_main_btn) {
-                Log.e(TAG, "runstart" );
+                startActivity(RunningActivity.class);
             }
         }
     };
@@ -189,6 +189,12 @@ public class RunMainFragmentActivity extends Fragment implements OnMapReadyCallb
                 return;
             }
         }
+    }
+
+    private void startActivity(Class c){
+        Intent intent = new Intent(getActivity(), c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
 }

@@ -38,6 +38,7 @@
         <activity android:name=".RunMainActivity" />
         <activity android:name=".PasswordResetActivity" />
         <activity android:name=".RunningActivity" />
+        <activity android:name=".EndRunActivity"/>
 
 
     </application>

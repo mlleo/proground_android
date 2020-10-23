@@ -63,7 +63,7 @@ public class RunMainFragmentActivity extends Fragment implements OnMapReadyCallb
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.run_main_btn) {
-                startActivity(RunningActivity.class);
+                startActivity(EndRunActivity.class);
             }
         }
     };

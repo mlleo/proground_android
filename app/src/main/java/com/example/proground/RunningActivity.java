@@ -14,6 +14,7 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,6 +36,7 @@ public class RunningActivity extends AppCompatActivity {
         toggleButton = findViewById(R.id.run_start_btn);
 
         toggleButton.setOnClickListener(onClickListener);
+        toggleButton.setOnLongClickListener(onLongClickListener);
 
     }
 
@@ -58,15 +60,23 @@ public class RunningActivity extends AppCompatActivity {
         }
     };
 
+    View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            switch (v.getId()) {
+                case R.id.run_start_btn:
+                    Intent intent = new Intent(v.getContext(), EndRunActivity.class);
+                    startActivity(intent);
+            }
+            return true;
+        }
+    };
 
-    private void startToast(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
 
-    private void startActivity(Class c){
-        Intent intent = new Intent(this, c);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
+//    private void startActivity(Class c){
+//        Intent intent = new Intent(this, c);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+//    }
 
 }

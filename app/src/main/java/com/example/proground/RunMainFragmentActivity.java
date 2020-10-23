@@ -30,8 +30,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class RunMainFragmentActivity extends Fragment implements OnMapReadyCallback {
 
-
-    private static final String TAG="fragment";
     private MapView mapView = null;
     private GoogleMap googleMap;
     Button run_start;
